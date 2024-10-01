@@ -24,7 +24,7 @@ main_chain = (Chain()
 # Run the chain
 output = main_chain.invoke(model)
 
-# Output one of the resulting steps
+# Output the resulting haiku from the final step
 print(output.haiku)
 ``` 
 
