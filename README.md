@@ -40,7 +40,7 @@ To run this project, you need to have the following installed:
 To install this project, follow these steps:
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/benbaptist/chainai.git
    ```
 2. Install the package:
     ```bash
