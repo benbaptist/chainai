@@ -4,8 +4,6 @@ model = Model(
     model="gpt-4o-mini"
 )
 
-# Create chains
-
 main_chain = (Chain()
     .add("Write a short story about a cat.", key="draft1")
     .add("Make it 10x better.", key="draft2")
@@ -14,7 +12,7 @@ main_chain = (Chain()
 
 output = main_chain.invoke(model)
 
-# Output results
+# Output each step
 print("***** Draft 1: *****")
 print(output.draft1)
 print("***** Draft 2: *****")
