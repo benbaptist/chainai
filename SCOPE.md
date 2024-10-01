@@ -3,7 +3,8 @@ Simple Python module for creating chains to execute a complex AI workflow, eithe
 # Example Usage
 
 ```python
-from scope import Model, Chain
+from chainai import Model, Chain
+# consider ryven for the UI
 
 model = Model(
     model="gpt-4o-mini",
