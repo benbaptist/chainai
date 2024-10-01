@@ -10,8 +10,7 @@ Here’s a brief example of how to use ChainAI:
 from chainai import Model, Chain
 
 model = Model(
-    model="gpt-4o-mini",
-    temperature=0.0,
+    model="gpt-4o-mini"
 )
 
 # Create chains
