@@ -26,20 +26,16 @@ class Model:
 
 class Chain:
     def __init__(self):
-        self.steps: List[Dict[str, Any]] = []
+        self.steps: List[Step] = []  # Changed from Dict to List[Step]
         self.context: Dict[str, Any] = {}
 
     def add(self, prompt: str, output: Optional[str] = None, json: bool = False) -> 'Chain':
-        self.steps.append({
-            "prompt": prompt,
-            "output": output,
-            "json": json
-        })
+        self.steps.append(Step(prompt=prompt, output=output, json=json))
         return self
 
     def invoke(self, model: Model, verbose: bool = False) -> 'ChainOutput':
         for step in self.steps:
-            prompt = step["prompt"]
+            prompt = step.prompt  # Access prompt directly from Step
             if isinstance(prompt, Chain):
                 # Execute nested chain
                 nested_output = prompt.invoke(model, verbose=verbose)
@@ -56,17 +52,17 @@ class Chain:
                 for key, value in self.context.items():
                     full_prompt = full_prompt.replace(f"{{{key}}}", str(value))
 
-                result = model.generate(full_prompt, json_mode=step["json"])
+                result = model.generate(full_prompt, json_mode=step.json)  # Use step.json
 
                 if verbose:
                     print(f"Prompt: {full_prompt}")
                     print(f"Result: {result}")
 
-                if step["json"]:
+                if step.json:  # Use step.json
                     result = json.loads(result)
 
-                if step["output"]:
-                    self.context[step["output"]] = result
+                if step.output:  # Use step.output
+                    self.context[step.output] = result
         return ChainOutput(self.context)
 
 class ChainOutput:
