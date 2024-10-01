@@ -9,24 +9,23 @@ Here’s a brief example of how to use ChainAI:
 ```python
 from chainai import Model, Chain
 
+# Create a model
 model = Model(
     model="gpt-4o-mini"
 )
 
-# Create chains
-
+# Create a chain
 main_chain = (Chain()
     .add("Write a short story about a cat.", key="draft1")
     .add("Make it 10x better.", key="draft2")
     .add("Turn it into a haiku.", key="haiku")
 )
 
+# Run the chain
 output = main_chain.invoke(model)
 
-# Output results
-print(output.draft1)
-print(output.draft2)
-print(output.draft3)
+# Output one of the resulting steps
+print(output.haiku)
 ``` 
 
 ## Requirements
